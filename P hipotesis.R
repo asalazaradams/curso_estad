@@ -64,3 +64,50 @@ tt
 ?qt
 pt(t,n-1,lower.tail =F )
 
+
+#Ejemplo 6
+x1=23
+x2=37
+
+s1=32
+s2=16
+  
+n1=1219
+n2=733
+alfa=.05
+t=(x2-x1)/
+  
+ sqrt(
+     ((s1^2)/n1)
+     +((s2^2)/n2) 
+     )
+
+tt=qt(alfa,n1 + n2-2, lower.tail = F)
+tt
+
+
+
+library(dplyr)
+German_Credit=read.csv("https://raw.githubusercontent.com/asalazaradams/curso_estad/main/German_Credit.csv")
+class(German_Credit$bad_credit)
+as.factor(German_Credit$bad_credit)
+German_Credit%>%group_by(bad_credit)%>%
+  summarise(mean(loan_amount))
+
+German_Credit%>%group_by(bad_credit)%>%
+  summarise(mean(age_yrs))
+
+bad=German_Credit%>%filter(bad_credit==1)%>%
+  select(loan_amount,age_yrs)
+
+good=German_Credit%>%filter(bad_credit==0)%>%
+  select(loan_amount,age_yrs)
+
+t.test(good$loan_amount,bad$loan_amount)
+
+
+t.test(good$age_yrs,bad$age_yrs)
+
+
+
+
