@@ -114,27 +114,3 @@ confint(svyby(~ING_X_HRS, by=~SEX, design=ds_ocupados, svymean))
 t2<-svyttest(ING_X_HRS~SEX, ds_ocupados)
 t2
 
-
-
-#PEA EMPLEADORES
-empleadores=sdem %>% filter(R_DEF=="00",
-                            C_RES==1|C_RES==3,
-                            EDA>=15 & EDA<=98,
-                            CLASE1==1,
-                            CLASE2==1,
-                            POS_OCU==2)%>%
-          select(FAC,EST_D, UPM,ING_X_HRS,INGOCUP,HRSOCUP, EDA, SEX,ENT)
-
-
-
-ds_empleadores<- svydesign(id = ~UPM, strata = ~EST_D, weights = ~FAC, nest=TRUE, data=empleadores)
-
-confint(svyby(~INGOCUP, by=~SEX, design=ds_empleadores, svymean))
-t1<-svyttest(INGOCUP~SEX, ds_empleadores)
-t1
-
-confint(svyby(~ING_X_HRS, by=~SEX, design=ds_empleadores, svymean))
-t2<-svyttest(ING_X_HRS~SEX, ds_empleadores)
-t2
-
-svyby(~ING_X_HRS, by=~SEX, design=ds_empleadores, svymean)
