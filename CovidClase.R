@@ -2,18 +2,18 @@
 #https://datos.covid-19.conacyt.mx/#DownZCSV
 #Seleccionar "todos los datos" y dar click en descargar
 
-setwd("~/Documents/ESTADISTICAS MEXICO/COVID/")
+setwd("C:/Users/asalazar/Documents/Estadisticas Mexico/COVID/")
 library(readr)
 library(dplyr)
-COVID19MEX <- read_csv("200724COVID19MEXICO.csv")
+COVID19MEX <- read_csv("COVID19MEXICO2020.csv")
 
 #revisamos los resultados:
-table(COVID19MEX$RESULTADO)
+table(COVID19MEX$RESULTADO_LAB)
 #Descargamos el diccionario para ver que representa cada categoria.
 #Se ubica en la parte superior  derecha del sitio
 
 #Filtramos para conservar solo los casos positivos:
-COVID19MEX=COVID19MEX%>%filter(RESULTADO==1)
+COVID19MEX=COVID19MEX%>%filter(RESULTADO_LAB==1)
 
 #recodificamos variables de interés, con la funcion recode de dplyr
 COVID19MEX$SEXO = recode (COVID19MEX$SEXO,  `1` = "hombre",`2` = "mujer")
